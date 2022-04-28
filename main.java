@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Main{
+    // comment
     public static void main(String[] args) {
         File file = new File("LATowns.txt");
         Scanner sc;
