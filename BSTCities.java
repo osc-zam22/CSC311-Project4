@@ -10,6 +10,8 @@ public class BSTCities {
     // default constructor, initializes an empty tree
     public BSTCities()
     {
+        root = null;
+        nodeCount =0;
     }
     // if the tree is empty, sets the root, else inserts the node
     public BSTCities(City city)
