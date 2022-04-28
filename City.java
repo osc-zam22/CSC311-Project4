@@ -11,6 +11,15 @@ public class City
 
     public City(String name , double longitude , double latitude , int population)
     {
+        this.setName(name);
+        this.setLongitude(longitude);
+        this.setLatitude(latitude);
+        try {
+            this.setPop(population);
+        } catch (Exception e) {
+            //TODO: handle exception
+            System.out.println("Not a valid population, must be equal to or greater than 0");
+        }
     }
 
     // setters
