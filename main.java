@@ -2,11 +2,15 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Main {
-    // comment
+    // comment\
+
+    public static Scanner KB = new Scanner(System.in);
+    public static int choice;
+
     public static void main(String[] args) {
         File file = new File("LATowns.txt");
         Scanner sc;
-        Scanner KB = new Scanner(System.in);
+
         try {
             sc = new Scanner(file);
             while (sc.hasNextLine())
@@ -17,10 +21,27 @@ public class Main {
             e.printStackTrace();
         }
         menue();
-        int choice = KB.nextInt();
+        choice = KB.nextInt();
+        menueChoice(choice);
+    }
+
+    public static void menue() {
+        System.out.printf("\n1. Display the information of all the cities\n2. Search a city\n3. Insert a city\n" +
+                "4. Delete a city\n5. Update the population of a city\n6. Find the distance between two cities\n" +
+                "7. Find nearby cities\n8. Exit the City Database\n");
+    }
+
+    public static void menueChoice(int choice) {
+        while(choice < 1 || )
         switch (choice) {
             case 1:
                 menueFor1();
+                choice = KB.nextInt();
+                while(choice < 9 || choice > 11){
+                    System.out.println("Enter valid number");
+                    choice = KB.nextInt();
+                }
+                choiceFor1(choice);
                 break;
             case 2:
                 menueFor2();
@@ -48,16 +69,27 @@ public class Main {
         }
     }
 
-    public static void menue() {
-        System.out.printf("\n1. Display the information of all the cities\n2. Search a city\n3. Insert a city\n" +
-                "4. Delete a city\n5. Update the population of a city\n6. Find the distance between two cities\n" +
-                "7. Find nearby cities\n8. Exit the City Database\n");
-    }
-
     public static void menueFor1() {
         System.out.printf("9. Display cities in the alphabetical order of names\n" +
                 "10. Display cities in the ascending order of their population\n" +
                 "11. Exit to top menu\n");
+    }
+    choiceFor1(choice){
+        switch(choice){
+            case 9:
+
+                break;
+            case 10:
+
+                break;
+            case 11:
+            menue();
+            choice = KB.nextInt();
+            menueChoice(choice);
+                break;
+            default:
+            break;
+        }
     }
 
     public static void menueFor2() {
