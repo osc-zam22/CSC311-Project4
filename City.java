@@ -69,4 +69,11 @@ public class City implements Comparable<City>
     public int compareTo(City anotherCity) {
         return this.getName().compareTo(anotherCity.getName());
     }
+
+    @Override
+    public String toString(){
+        String out = String.format("City: %s Location Latitude: %f Longitude: %f Population: %d", 
+            this.name , this.latitude , this.longitude , this.population);
+        return out;
+    }
 }
