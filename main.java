@@ -32,12 +32,16 @@ public class Main {
     }
 
     public static void menueChoice(int choice) {
-        while(choice < 1 || )
+        while (choice < 1 || choice > 8) {
+            System.out.println("Enter a Valid number.");
+            menue();
+            choice = KB.nextInt();
+        }
         switch (choice) {
             case 1:
                 menueFor1();
                 choice = KB.nextInt();
-                while(choice < 9 || choice > 11){
+                while (choice < 9 || choice > 11) {
                     System.out.println("Enter valid number");
                     choice = KB.nextInt();
                 }
@@ -74,8 +78,9 @@ public class Main {
                 "10. Display cities in the ascending order of their population\n" +
                 "11. Exit to top menu\n");
     }
-    choiceFor1(choice){
-        switch(choice){
+
+    public static void choiceFor1(int choice) {
+        switch (choice) {
             case 9:
 
                 break;
@@ -83,12 +88,12 @@ public class Main {
 
                 break;
             case 11:
-            menue();
-            choice = KB.nextInt();
-            menueChoice(choice);
+                menue();
+                choice = KB.nextInt();
+                menueChoice(choice);
                 break;
             default:
-            break;
+                break;
         }
     }
 
