@@ -1,7 +1,7 @@
-public class BSTCityNode implements Node<City>{
+public class BSTCityNode{
 
     private City city;
-    private Node<City> left, right;
+    private BSTCityNode left, right;
 
 
     public BSTCityNode(City city){
@@ -10,31 +10,31 @@ public class BSTCityNode implements Node<City>{
         this.right = null;
     }
 
-    @Override
-    public void setLeft(Node<City> left) {
+    
+    public void setLeft(BSTCityNode left) {
         // TODO Auto-generated method stub
         this.left = left;
     }
 
-    @Override
-    public void  setRight(Node<City> right) {
+   
+    public void  setRight(BSTCityNode right) {
         // TODO Auto-generated method stub
         this.right = right;
     }
 
-    @Override
-    public Node<City> getLeft() {
+    
+    public BSTCityNode getLeft() {
         // TODO Auto-generated method stub
         return this.left;
     }
 
-    @Override
-    public Node<City> getRight() {
+    
+    public BSTCityNode getRight() {
         // TODO Auto-generated method stub
         return this.right;
     }
 
-    @Override
+    
     public boolean isLeaf() {
         // TODO Auto-generated method stub
         if(this.left == null && this.right == null){
@@ -42,6 +42,5 @@ public class BSTCityNode implements Node<City>{
         }
         return false;
     }
-
-    
+ 
 }
