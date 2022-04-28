@@ -1,5 +1,5 @@
 import java.lang.Exception;
-public class City 
+public class City implements Comparable<City> 
 {
     // private field that holds info
     private String name;
@@ -61,5 +61,12 @@ public class City
     public int getPop()
     {
         return this.population;
+    }
+
+
+
+    @Override
+    public int compareTo(City anotherCity) {
+        return this.getName().compareTo(anotherCity.getName());
     }
 }

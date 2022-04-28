@@ -1,11 +1,8 @@
-public abstract class Node <E> {
-    private E object;
-
-    private Node left, right;
-
-    public abstract void setLeft(Node left);
-    public abstract void setRight(Node right);
-    public abstract Node getLeft();
-    public abstract Node getRight();
-
+public interface Node <E> {
+ 
+    public abstract void setLeft(Node<E> left);
+    public abstract void setRight(Node<E> right);
+    public abstract Node<E> getLeft();
+    public abstract Node<E> getRight();
+    public abstract boolean isLeaf();
 }
