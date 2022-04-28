@@ -2,11 +2,25 @@ import java.util.List;
 
 public class BSTCities {
 
+    // attributes
     BSTCityNode root;
 
+
+    // default constructor, initializes an empty tree
+    public BSTCities()
+    {
+        this.setRoot(null);
+    }
+    // if the tree is empty, sets the root, else inserts the node
     public BSTCities(BSTCityNode city)
     {
-        this.setRoot(city);
+        if(this.root == null)
+        {
+            this.setRoot(city);
+        }
+        else{
+            this.insert(city);
+        }
     }
 
     public void setRoot(BSTCityNode node) {
