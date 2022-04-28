@@ -1,3 +1,5 @@
+import javax.print.DocFlavor.STRING;
+
 public class BSTCityNode{
 
     private City city;
@@ -50,5 +52,8 @@ public class BSTCityNode{
     public City getCity()
     {
         return this.city;
+    }
+    public String toString(){
+        return city.toString();
     }
 }
