@@ -1,10 +1,19 @@
+import java.util.Scanner;
+import java.io.*;
+
 public class Main{
     public static void main(String[] args) {
-        File file = new File("C:\Users\joeyc\Documents\CSC311-Project4\LATowns.txt");
-        Scanner sc = new Scanner(file);
- 
-        while (sc.hasNextLine())
+        File file = new File("LATowns.txt");
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+            while (sc.hasNextLine())
             System.out.println(sc.nextLine());
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public static void menue(){
