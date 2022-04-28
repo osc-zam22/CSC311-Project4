@@ -61,9 +61,11 @@ public class BSTCities {
         else return null;
     }
 
-    public BSTCityNode getMax() {
-        // TODO Auto-generated method stub
-        return null;
+    public BSTCityNode getMax(BSTCityNode node) {
+        while(node != null && node.getRight() != null){
+            return getMax(node.getRight());
+        }
+        return node;
     }
 
     public BSTCityNode getMin() {
