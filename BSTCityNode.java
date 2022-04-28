@@ -5,7 +5,7 @@ public class BSTCityNode{
 
 
     public BSTCityNode(City city){
-        this.city = new City(city.getName() , city.getLongtitude() , city.getLatitude() , city.getPop());
+        this.city = city;
         this.left = null;
         this.right = null;
     }
@@ -42,5 +42,13 @@ public class BSTCityNode{
         }
         return false;
     }
- 
+    
+    public void setCity(City city)
+    {
+        this.city = city;
+    }
+    public City getCity()
+    {
+        return this.city;
+    }
 }

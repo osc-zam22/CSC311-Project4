@@ -9,50 +9,54 @@ public class BSTCities {
         this.setRoot(city);
     }
 
-    @Override
     public void setRoot(BSTCityNode node) {
         // TODO Auto-generated method stub
         this.root = node;
         
     }
 
-    @Override
-    public Node<City> getRoot() {
+    public BSTCityNode getRoot() {
         // TODO Auto-generated method stub
-        return null;
+        return this.root;
     }
 
-    @Override
-    public void insert(Node<City> node) {
+    public void insert(BSTCityNode node) {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
-    public void remove(Node<City> node) {
+    public void remove(BSTCityNode node) {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
-    public Node<City> binSearch(Node<City> node) {
+    public BSTCityNode binSearch(BSTCityNode node, String cityName) {
+        // TODO Auto-generated method stub
+        if(node.getCity().getName().compareToIgnoreCase(cityName) == 0)
+        {
+            return node; 
+        }
+        else if(node.getCity().getName().compareToIgnoreCase(cityName) > 0)
+        {
+            return binSearch(node.getLeft(), cityName);
+        }
+        else if(node.getCity().getName().compareToIgnoreCase(cityName) < 0)
+        {
+            return binSearch(node.getRight(), cityName);
+        }
+        else return null;
+    }
+
+    public BSTCityNode getMax() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public Node<City> getMax() {
+    public BSTCityNode getMin() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public Node<City> getMin() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public List<BSTCityNode> postOrder() {
         // TODO Auto-generated method stub
         return null;
