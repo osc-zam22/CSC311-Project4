@@ -3,16 +3,16 @@ import java.util.List;
 public class BSTCities {
 
     // attributes
-    BSTCityNode root;
+    private BSTCityNode root;
+    private int nodeCount;
 
 
     // default constructor, initializes an empty tree
     public BSTCities()
     {
-        this.setRoot(null);
     }
     // if the tree is empty, sets the root, else inserts the node
-    public BSTCities(BSTCityNode city)
+    public BSTCities(City city)
     {
         if(this.root == null)
         {
@@ -23,9 +23,9 @@ public class BSTCities {
         }
     }
 
-    public void setRoot(BSTCityNode node) {
+    public void setRoot(City city) {
         // TODO Auto-generated method stub
-        this.root = node;
+        this.root = new BSTCityNode(city);
         
     }
 
@@ -34,11 +34,22 @@ public class BSTCities {
         return this.root;
     }
 
-    public void insert(BSTCityNode node) {
+    public void insert(City city) {
         // TODO Auto-generated method stub
-        
+        root = insertHelp(root , city);
+        nodeCount++;
     }
 
+    private BSTCityNode insertHelp(BSTCityNode root, City city) {
+        if(root== null){
+            return new BSTCityNode(city);
+        }
+        if (root.getCity().compareTo(city) > 0)
+            root.setLeft(insertHelp(root.getLeft(), city));
+        else
+            root.setRight(insertHelp(root.getRight(), city));
+        return null;
+    }
     public void remove(BSTCityNode node) {
         // TODO Auto-generated method stub
         
@@ -81,4 +92,30 @@ public class BSTCities {
         return null;
     }
     
+
+    // helper print function
+    private void printhelp(BSTCityNode rt) 
+    {
+        if (rt == null) 
+            return;
+        printhelp(rt.getLeft());
+        printVisit(rt);
+        printhelp(rt.getRight());
+    }
+
+    private StringBuffer out;
+
+    // to string function
+    public String toString() 
+    {
+        out = new StringBuffer(100);
+        printhelp(root);
+        return out.toString();
+    }
+
+    // another helper function to the to string
+    private void printVisit(BSTCityNode rNode) 
+    {
+        out.append(rNode.toString() + "\n");
+    }
 }
