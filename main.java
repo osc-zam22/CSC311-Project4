@@ -30,7 +30,6 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(cities.toString());
-        menue();
         menu();
         choice = KB.nextInt();
         menuChoice(choice);
