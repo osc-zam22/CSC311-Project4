@@ -52,7 +52,7 @@ public class Main {
             choice = KB.nextInt();
         }
         switch (choice) {
-            case 1:
+            case 1: // submenu1
                 menuFor1();
                 choice = KB.nextInt();
                 while (choice < 9 || choice > 11) {
@@ -61,7 +61,7 @@ public class Main {
                 }
                 choiceFor1(choice, cities);
                 break;
-            case 2:
+            case 2: // submenu2
                 menuFor2();
                 choice = KB.nextInt();
                 while (choice < 12 || choice > 14) {
@@ -70,23 +70,42 @@ public class Main {
                 }
                 choiceFor2(choice, cities);
                 break;
-            case 3:
+            case 3: // insert city
+                System.out.println("Please enter the name of the city you wish to insert.");
+                String newCity = KB.nextLine();
+                System.out.println("Now enter the cities longitude coordinates.");
+                double newLong = KB.nextDouble();
+                System.out.println("Now enter the cities latitude coordinates.");
+                double newLat = KB.nextDouble();
+                System.out.println("Now enter the cities population density.");
+                int newPop = KB.nextInt();
+
+                City temp = new City(newCity, newLong, newLat, newPop);
+                cities.insert(temp);
+                /*
+                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), temp);
+                 * 
+                 * if (result != null) {
+                 * System.out.println("City already exists");
+                 * } else {
+                 * cities.insert(temp);
+                 * }
+                 */
+                break;
+            case 4: // delete city
 
                 break;
-            case 4:
+            case 5: // update pop of a city
 
                 break;
-            case 5:
+            case 6: // find distance between to cities
 
                 break;
-            case 6:
+            case 7: // find nearby cities
 
                 break;
-            case 7:
-
-                break;
-            case 8:
-
+            case 8:// exit
+                System.exit(0);
                 break;
             default:
                 break;
@@ -101,17 +120,20 @@ public class Main {
 
     public static void choiceFor1(int choice, BSTCities cities) {
         switch (choice) {
-            case 9:
+            case 9: // print by a-z
                 System.out.println(cities.toString());
                 break;
-            case 10:
+
+            case 10: // print by pop
 
                 break;
+
             case 11:
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
                 break;
+
             default:
                 break;
         }
@@ -125,17 +147,40 @@ public class Main {
 
     public static void choiceFor2(int choice, BSTCities cities) {
         switch (choice) {
-            case 12:
-
+            case 12: // Search by name
+                System.out.println("Enter city name to search");
+                String cityName = KB.nextLine();
+                /*
+                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), cityName);
+                 * 
+                 * if (result == null) {
+                 * System.out.println("City does not exist in  the records");
+                 * } else {
+                 * System.out.println(result);
+                 * }
+                 */
                 break;
-            case 13:
 
+            case 13: // search by pop
+                System.out.println("Enter the number of population to search for: ");
+                int popSearch = KB.nextInt();
+                /*
+                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), popSearch);
+                 * 
+                 * if (result == null) {
+                 * System.out.println("City with that population does not exist on record");
+                 * } else {
+                 * System.out.println(result);
+                 * }
+                 */
                 break;
-            case 14:
+
+            case 14: // return to main
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
                 break;
+
             default:
                 break;
         }
