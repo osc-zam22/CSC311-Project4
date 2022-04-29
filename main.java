@@ -93,7 +93,19 @@ public class Main {
                  */
                 break;
             case 4: // delete city
-
+                System.out.println("Eneter the name of a city to delete.");
+                String killCity = KB.nextLine();
+                /*
+                 * cities.remove(killCity);
+                 * 
+                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), killCity);
+                 * 
+                 * if (result == null) {
+                 * System.out.println("City does not exist in  the records");
+                 * } else {
+                 * cities.remove(killCity);
+                 * }
+                 */
                 break;
             case 5: // update pop of a city
 
