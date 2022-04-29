@@ -12,20 +12,19 @@ public class Main {
         Scanner sc;
         BSTCities cities = new BSTCities();
 
-
         try {
             sc = new Scanner(file);
             sc.nextLine();
-            while (sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 String name = sc.next();
                 double latitude = sc.nextDouble();
                 double longitude = sc.nextDouble();
                 int population = sc.nextInt();
-                City temp = new City(name , longitude , latitude , population);
+                City temp = new City(name, longitude, latitude, population);
                 cities.insert(temp);
                 // debugging code
                 // System.out.println(temp.toString());
-                //System.out.println("current tree" + cities.toString());
+                // System.out.println("current tree" + cities.toString());
 
             }
 
@@ -34,7 +33,7 @@ public class Main {
             e.printStackTrace();
         }
         // debugging code
-        //System.out.println(cities.toString());
+        // System.out.println(cities.toString());
         menu();
         choice = KB.nextInt();
         menuChoice(choice);
@@ -64,8 +63,8 @@ public class Main {
                 break;
             case 2:
                 menuFor2();
-                choice = KB.nextInt();  
-                while (choice < 12 || choice> 14){
+                choice = KB.nextInt();
+                while (choice < 12 || choice > 14) {
                     System.out.println("Enter valid number");
                     choice = KB.nextInt();
                 }
@@ -123,10 +122,11 @@ public class Main {
                 "13. Search by Population Range\n" +
                 "14. Exit to top menu\n");
     }
-    public static void choiceFor2(int choice){
-        switch(choice){
+
+    public static void choiceFor2(int choice) {
+        switch (choice) {
             case 12:
-            
+
                 break;
             case 13:
 
