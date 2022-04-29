@@ -23,13 +23,18 @@ public class Main {
                 int population = sc.nextInt();
                 City temp = new City(name , longitude , latitude , population);
                 cities.insert(temp);
+                // debugging code
+                // System.out.println(temp.toString());
+                //System.out.println("current tree" + cities.toString());
+
             }
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println(cities.toString());
+        // debugging code
+        //System.out.println(cities.toString());
         menu();
         choice = KB.nextInt();
         menuChoice(choice);

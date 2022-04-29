@@ -14,16 +14,6 @@ public class BSTCities {
         nodeCount =0;
     }
     // if the tree is empty, sets the root, else inserts the node
-    public BSTCities(City city)
-    {
-        if(this.root == null)
-        {
-            this.setRoot(city);
-        }
-        else{
-            this.insert(city);
-        }
-    }
 
     public void setRoot(City city) {
         // TODO Auto-generated method stub
@@ -50,7 +40,7 @@ public class BSTCities {
             root.setLeft(insertHelp(root.getLeft(), city));
         else
             root.setRight(insertHelp(root.getRight(), city));
-        return null;
+        return root;
     }
     public void remove(BSTCityNode node) {
         // TODO Auto-generated method stub
