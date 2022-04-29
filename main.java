@@ -10,16 +10,26 @@ public class Main {
     public static void main(String[] args) {
         File file = new File("LATowns.txt");
         Scanner sc;
+        BSTCities cities = new BSTCities();
+
 
         try {
             sc = new Scanner(file);
-            while (sc.hasNextLine())
-                System.out.println(sc.nextLine());
+            sc.nextLine();
+            while (sc.hasNextLine()){
+                String name = sc.next();
+                double latitude = sc.nextDouble();
+                double longitude = sc.nextDouble();
+                int population = sc.nextInt();
+                City temp = new City(name , longitude , latitude , population);
+                cities.insert(temp);
+            }
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        System.out.println(cities.toString());
         menue();
         choice = KB.nextInt();
         menueChoice(choice);
