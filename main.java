@@ -31,25 +31,26 @@ public class Main {
         }
         System.out.println(cities.toString());
         menue();
+        menu();
         choice = KB.nextInt();
-        menueChoice(choice);
+        menuChoice(choice);
     }
 
-    public static void menue() {
+    public static void menu() {
         System.out.printf("\n1. Display the information of all the cities\n2. Search a city\n3. Insert a city\n" +
                 "4. Delete a city\n5. Update the population of a city\n6. Find the distance between two cities\n" +
                 "7. Find nearby cities\n8. Exit the City Database\n");
     }
 
-    public static void menueChoice(int choice) {
+    public static void menuChoice(int choice) {
         while (choice < 1 || choice > 8) {
             System.out.println("Enter a Valid number.");
-            menue();
+            menu();
             choice = KB.nextInt();
         }
         switch (choice) {
             case 1:
-                menueFor1();
+                menuFor1();
                 choice = KB.nextInt();
                 while (choice < 9 || choice > 11) {
                     System.out.println("Enter valid number");
@@ -58,7 +59,13 @@ public class Main {
                 choiceFor1(choice);
                 break;
             case 2:
-                menueFor2();
+                menuFor2();
+                choice = KB.nextInt();  
+                while (choice < 12 || choice> 14){
+                    System.out.println("Enter valid number");
+                    choice = KB.nextInt();
+                }
+                choiceFor2(choice);
                 break;
             case 3:
 
@@ -83,7 +90,7 @@ public class Main {
         }
     }
 
-    public static void menueFor1() {
+    public static void menuFor1() {
         System.out.printf("9. Display cities in the alphabetical order of names\n" +
                 "10. Display cities in the ascending order of their population\n" +
                 "11. Exit to top menu\n");
@@ -98,19 +105,36 @@ public class Main {
 
                 break;
             case 11:
-                menue();
+                menu();
                 choice = KB.nextInt();
-                menueChoice(choice);
+                menuChoice(choice);
                 break;
             default:
                 break;
         }
     }
 
-    public static void menueFor2() {
+    public static void menuFor2() {
         System.out.printf("12. Search by Name\n" +
                 "13. Search by Population Range\n" +
                 "14. Exit to top menu\n");
+    }
+    public static void choiceFor2(int choice){
+        switch(choice){
+            case 12:
+            
+                break;
+            case 13:
+
+                break;
+            case 14:
+                menu();
+                choice = KB.nextInt();
+                menuChoice(choice);
+                break;
+            default:
+                break;
+        }
     }
 
 }
