@@ -36,7 +36,7 @@ public class Main {
         // System.out.println(cities.toString());
         menu();
         choice = KB.nextInt();
-        menuChoice(choice);
+        menuChoice(choice, cities);
     }
 
     public static void menu() {
@@ -45,7 +45,7 @@ public class Main {
                 "7. Find nearby cities\n8. Exit the City Database\n");
     }
 
-    public static void menuChoice(int choice) {
+    public static void menuChoice(int choice, BSTCities cities) {
         while (choice < 1 || choice > 8) {
             System.out.println("Enter a Valid number.");
             menu();
@@ -59,7 +59,7 @@ public class Main {
                     System.out.println("Enter valid number");
                     choice = KB.nextInt();
                 }
-                choiceFor1(choice);
+                choiceFor1(choice, cities);
                 break;
             case 2:
                 menuFor2();
@@ -68,7 +68,7 @@ public class Main {
                     System.out.println("Enter valid number");
                     choice = KB.nextInt();
                 }
-                choiceFor2(choice);
+                choiceFor2(choice, cities);
                 break;
             case 3:
 
@@ -99,10 +99,10 @@ public class Main {
                 "11. Exit to top menu\n");
     }
 
-    public static void choiceFor1(int choice) {
+    public static void choiceFor1(int choice, BSTCities cities) {
         switch (choice) {
             case 9:
-
+                System.out.println(cities.toString());
                 break;
             case 10:
 
@@ -110,7 +110,7 @@ public class Main {
             case 11:
                 menu();
                 choice = KB.nextInt();
-                menuChoice(choice);
+                menuChoice(choice, cities);
                 break;
             default:
                 break;
@@ -123,7 +123,7 @@ public class Main {
                 "14. Exit to top menu\n");
     }
 
-    public static void choiceFor2(int choice) {
+    public static void choiceFor2(int choice, BSTCities cities) {
         switch (choice) {
             case 12:
 
@@ -134,7 +134,7 @@ public class Main {
             case 14:
                 menu();
                 choice = KB.nextInt();
-                menuChoice(choice);
+                menuChoice(choice, cities);
                 break;
             default:
                 break;
