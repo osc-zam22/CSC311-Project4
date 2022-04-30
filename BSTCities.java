@@ -1,5 +1,7 @@
 import java.util.List;
 
+
+// custom code, written from scratch
 public class BSTCities {
 
     // attributes
@@ -11,27 +13,26 @@ public class BSTCities {
     public BSTCities()
     {
         root = null;
-        nodeCount =0;
+        nodeCount = 0;
     }
-    // if the tree is empty, sets the root, else inserts the node
-
+    // sets the root of the tree
     public void setRoot(City city) {
-        // TODO Auto-generated method stub
         this.root = new BSTCityNode(city);
         
     }
 
+    //returns the root of the tree
     public BSTCityNode getRoot() {
-        // TODO Auto-generated method stub
         return this.root;
     }
 
+    // inserts a new node
     public void insert(City city) {
-        // TODO Auto-generated method stub
         root = insertHelp(root , city);
         nodeCount++;
     }
 
+    // insert helper method(from provided code)
     private BSTCityNode insertHelp(BSTCityNode root, City city) {
         if(root== null){
             return new BSTCityNode(city);
@@ -47,12 +48,14 @@ public class BSTCities {
         
     }
 
+    // binary Search
     public BSTCityNode binSearch(BSTCityNode node, String cityName) {
-        // TODO Auto-generated method stub
+        // base case
         if(node.getCity().getName().compareToIgnoreCase(cityName) == 0)
         {
             return node; 
         }
+        // recursive calls
         else if(node.getCity().getName().compareToIgnoreCase(cityName) > 0)
         {
             return binSearch(node.getLeft(), cityName);
@@ -61,9 +64,11 @@ public class BSTCities {
         {
             return binSearch(node.getRight(), cityName);
         }
+        // base case
         else return null;
     }
 
+    // recursive method to find and return the max node in the tree
     public BSTCityNode getMax(BSTCityNode node) {
         if(node != null && node.getRight() != null){
             return getMax(node.getRight());
@@ -71,8 +76,8 @@ public class BSTCities {
         return node;
     }
 
+    // recursive method to find and return the min node in the tree
     public BSTCityNode getMin(BSTCityNode node) {
-        // TODO Auto-generated method stub
         if(node != null && node.getLeft() != null){
             return getMin(node.getLeft());
         }
@@ -85,9 +90,10 @@ public class BSTCities {
     }
     
 
-    // helper print function
+    // helper print function, in Order traversal
     private void printhelp(BSTCityNode rt) 
     {
+        // base case
         if (rt == null) 
             return;
         printhelp(rt.getLeft());
@@ -105,9 +111,29 @@ public class BSTCities {
         return out.toString();
     }
 
-    // another helper function to the to string
+    // another helper function for the to string
     private void printVisit(BSTCityNode rNode) 
     {
         out.append(rNode.toString() + "\n");
+    }
+
+    // returns all cities between a certain range in population pre order traversal
+    public void betweenThreshold(BSTCityNode root , int lowerBound, int upperBound )
+    {
+        {
+            // base case
+            if(root == null)
+            {
+                return ;
+            }
+            // process node
+            else if(root.getCity().getPop() >= lowerBound && root.getCity().getPop() <= upperBound)
+            {
+                System.out.print(root.toString() + "\n");
+            }
+            // process next nodes
+            betweenThreshold(root.getLeft() , lowerBound, upperBound);
+            betweenThreshold(root.getRight() , lowerBound, upperBound);
+        } 
     }
 }

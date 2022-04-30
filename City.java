@@ -14,10 +14,10 @@ public class City implements Comparable<City>
         this.setName(name);
         this.setLongitude(longitude);
         this.setLatitude(latitude);
+        // error handling
         try {
             this.setPop(population);
         } catch (Exception e) {
-            //TODO: handle exception
             System.out.println("Not a valid population, must be equal to or greater than 0");
         }
     }
@@ -37,7 +37,9 @@ public class City implements Comparable<City>
     }
     public void setPop(int pop) throws Exception
     {
+        //error handling
         if(pop < 0){
+
             throw new Exception();
         }
 
@@ -65,12 +67,15 @@ public class City implements Comparable<City>
 
 
 
+    // overridden methods
     @Override
     public int compareTo(City anotherCity) {
+        // used to compare cities by Name
         return this.getName().compareTo(anotherCity.getName());
     }
-
+    
     @Override
+    // displays the information of a City object
     public String toString(){
         String out = String.format("City: %s Location Latitude: %f Longitude: %f Population: %d", 
             this.name , this.latitude , this.longitude , this.population);

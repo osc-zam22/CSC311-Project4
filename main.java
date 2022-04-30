@@ -1,8 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.io.*;
 
 public class Main {
-    // comment\
 
     public static Scanner KB = new Scanner(System.in);
     public static int choice;
@@ -28,10 +28,7 @@ public class Main {
 
             }
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        } catch (FileNotFoundException e) {}
         // debugging code
         // System.out.println(cities.toString());
         menu();
@@ -39,6 +36,7 @@ public class Main {
         menuChoice(choice, cities);
     }
 
+    // funcion that displays the menu in the terminal
     public static void menu() {
         System.out.printf("\n1. Display the information of all the cities\n2. Search a city\n3. Insert a city\n" +
                 "4. Delete a city\n5. Update the population of a city\n6. Find the distance between two cities\n" +
@@ -46,6 +44,8 @@ public class Main {
     }
 
     public static void menuChoice(int choice, BSTCities cities) {
+        int newPop;
+        BSTCityNode result;
         while (choice < 1 || choice > 8) {
             System.out.println("Enter a Valid number.");
             menu();
@@ -71,6 +71,7 @@ public class Main {
                 choiceFor2(choice, cities);
                 break;
             case 3: // insert city
+                // prompts
                 System.out.println("Please enter the name of the city you wish to insert.");
                 String newCity = KB.next();
                 System.out.println("Now enter the cities longitude coordinates.");
@@ -78,7 +79,7 @@ public class Main {
                 System.out.println("Now enter the cities latitude coordinates.");
                 double newLat = KB.nextDouble();
                 System.out.println("Now enter the cities population density.");
-                int newPop = KB.nextInt();
+                newPop = KB.nextInt();
 
                 City temp = new City(newCity, newLong, newLat, newPop);
                 cities.insert(temp);
@@ -96,19 +97,19 @@ public class Main {
                 menuChoice(choice, cities);
                 break;
             case 4: // delete city
-                System.out.println("Eneter the name of a city to delete.");
+                System.out.println("Enter the name of a city to delete.");
                 String killCity = KB.next();
-                /*
-                 * cities.remove(killCity);
-                 * 
-                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), killCity);
-                 * 
-                 * if (result == null) {
-                 * System.out.println("City does not exist in  the records");
-                 * } else {
-                 * cities.remove(killCity);
-                 * }
-                 */
+                 
+                // checks if the city exists
+                result = cities.binSearch(cities.getRoot(), killCity);
+                 
+                // error handling
+                if (result == null) {
+                System.out.println("City does not exist in  the records");
+                } else {
+                //cities.remove(killCity);
+                }
+                 
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -116,20 +117,29 @@ public class Main {
             case 5: // update pop of a city
                 System.out.println("Enter name of city you want to update.");
                 String cityName = KB.next();
-                /*
-                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), cityName);
-                 * 
-                 * if (result == null) {
-                 * System.out.println("City does not exist");
-                 * } else {
-                 * System.out.println(result);
-                 */
+                
+                // checks if the city exists
+                result = cities.binSearch(cities.getRoot(), cityName);
+                 
+                // handles case where the city does not exist
+                if (result == null) {
+                    System.out.println("City does not exist");
+                    break;
+                } 
+                
+                // process of updating a city's population
+                System.out.println(result); 
                 System.out.println("Enter new population");
-                int newPop2 = KB.nextInt();
-                /*
-                 * result.setPop = newPop2;
-                 * 
-                 */
+                newPop = KB.nextInt();
+                
+                // error handling, setPop method throws exception
+                try {
+                    result.getCity().setPop(newPop);
+                } catch (Exception e) {
+                    System.out.println("Not a valid population, must be equal to or greater than 0");
+                }
+                 
+                
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -205,6 +215,7 @@ public class Main {
     public static void choiceFor1(int choice, BSTCities cities) {
         switch (choice) {
             case 9: // print by a-z
+                // toString is in Order traversal by default
                 System.out.println(cities.toString());
                 menu();
                 choice = KB.nextInt();
@@ -240,15 +251,15 @@ public class Main {
             case 12: // Search by name
                 System.out.println("Enter city name to search");
                 String cityName = KB.next();
-                /*
-                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), cityName);
-                 * 
-                 * if (result == null) {
-                 * System.out.println("City does not exist in  the records");
-                 * } else {
-                 * System.out.println(result);
-                 * }
-                 */
+                
+                 BSTCityNode result = cities.binSearch(cities.getRoot(), cityName);
+                 
+                 if (result == null) {
+                 System.out.println("City does not exist in  the records");
+                 } else {
+                 System.out.println(result);
+                 }
+                 
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -259,15 +270,7 @@ public class Main {
                 int popMin = KB.nextInt();
                 System.out.println("Enter maximum range of population to search for: ");
                 int popMax = KB.nextInt();
-                /*
-                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), popMin, popMax);
-                 * 
-                 * if (result == null) {
-                 * System.out.println("City with population range does not exists");
-                 * } else {
-                 * System.out.println(result);
-                 * }
-                 */
+                cities.betweenThreshold(cities.getRoot() , popMin , popMax);
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
