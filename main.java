@@ -72,6 +72,7 @@ public class Main {
                 break;
             case 3: // insert city
                 // prompts
+                System.out.println("=====================================");
                 System.out.println("Please enter the name of the city you wish to insert.");
                 String newCity = KB.next();
 
@@ -93,6 +94,7 @@ public class Main {
 
                 City temp = new City(newCity, newLong, newLat, newPop);
                 cities.insert(temp);
+                System.out.println("=====================================");
                 System.out.println("Updated database: \n" + cities.toString());
 
                 menu();
@@ -101,6 +103,7 @@ public class Main {
                 break;
             case 4: // delete city
                 // prompts user
+                System.out.println("=====================================");
                 System.out.println("Enter the name of a city to delete.");
                 String killCity = KB.next();
                  
@@ -109,11 +112,14 @@ public class Main {
                  
                 // error handling
                 if (result == null) {
-                System.out.println("City did not exist in  the records");
+                    System.out.println("=====================================");
+                    System.out.println("City did not exist in  the records");
                 }
                 else{
+                    System.out.println("=====================================");
                     System.out.println("City successfully removed, the new database is:\n" + cities.toString());
                 }
+                System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -139,11 +145,14 @@ public class Main {
                 // error handling, setPop method throws exception
                 try {
                     result.getCity().setPop(newPop);
+                    System.out.println("=====================================");
+                    System.out.println("Updated City :\n" + result);
                 } catch (Exception e) {
                     System.out.println("Not a valid population, must be equal to or greater than 0");
                 }
+
                  
-                
+                System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -174,10 +183,10 @@ public class Main {
                     temp2 = cities.binSearch(cities.getRoot(), city2);
                 }
                  
-                System.out.println("The distance in km between the two cities are: ");
+                System.out.println("=====================================");
                 System.out.println("The distance between these two cities in kilometers is : " + 
                                     City.distance(temp1.getCity(), temp2.getCity()) + " KM");
-                
+                System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -204,6 +213,7 @@ public class Main {
                         "==========================\n\n", radius);
                 // makes function call to print cities
                 cities.searchRad(cities.getRoot(), result.getCity(), radius);
+                System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -273,7 +283,7 @@ public class Main {
                  System.out.println("City does not exist in  the records");
                  } else {
                     System.out.println("=====================================");
-                    System.out.println("City Found: " +result);
+                    System.out.println("City Found:\n" +result);
                  }
                  System.out.println("=====================================");
                 menu();
