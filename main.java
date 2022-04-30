@@ -74,6 +74,16 @@ public class Main {
                 // prompts
                 System.out.println("Please enter the name of the city you wish to insert.");
                 String newCity = KB.next();
+
+                // error check, checks if the the city exists, if so, breaks
+                result = cities.binSearch(cities.getRoot(), newCity);
+                if (result != null) {
+                    System.out.println("City already exists");
+                    menu();
+                    choice = KB.nextInt();
+                    menuChoice(choice, cities);
+                    break;
+                }
                 System.out.println("Now enter the cities longitude coordinates.");
                 double newLong = KB.nextDouble();
                 System.out.println("Now enter the cities latitude coordinates.");
@@ -83,15 +93,8 @@ public class Main {
 
                 City temp = new City(newCity, newLong, newLat, newPop);
                 cities.insert(temp);
-                /*
-                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), temp);
-                 * 
-                 * if (result != null) {
-                 * System.out.println("City already exists");
-                 * } else {
-                 * cities.insert(temp);
-                 * }
-                 */
+                System.out.println("Updated database: \n" + cities.toString());
+
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -148,53 +151,59 @@ public class Main {
             case 6: // find distance between two cities
                 System.out.println("Enter the name of the first city: ");
                 String city1 = KB.next();
-                /*
-                 * BSTCityNode c1 = cities.binSearch(BSTCities.getRoot(), city1);
-                 * while(c1 == null){
-                 * System.out.println("City does not exist enter a valid city");
-                 * city1 = KB.next();
-                 * 
-                 * c1 = cities.binSearch(BSTCities.getRoot(), city1);
-                 * }
-                 */
+                
+                BSTCityNode temp1 = cities.binSearch(cities.getRoot(), city1);
+
+                //error checking
+                while(temp1 == null){
+                System.out.println("City does not exist enter a valid city");
+                city1 = KB.next();
+                 
+                temp1 = cities.binSearch(cities.getRoot(), city1);
+                }
+                 
                 System.out.println("Enter the name of the second city: ");
                 String city2 = KB.next();
-                /*
-                 * BSTCityNode c2 = cities.binSearch(BSTCities.getRoot(), city2);
-                 * 
-                 * while(c2 == null){
-                 * System.out.println("City does not exist enter a valid city");
-                 * city2 = KB.next();
-                 * 
-                 * c2 = cities.binSearch(BSTCities.getRoot(), city2);
-                 * }
-                 * 
-                 * System.out.println("The distance in km between the two cities are: ")
-                 * System.out.println(cities.distance(cities, c1, c2));
-                 */
+                
+                BSTCityNode temp2 = cities.binSearch(cities.getRoot(), city2);
+                //error checking
+                while(temp2 == null){
+                    System.out.println("City does not exist enter a valid city");
+                    city2 = KB.next();
+                
+                    temp2 = cities.binSearch(cities.getRoot(), city2);
+                }
+                 
+                System.out.println("The distance in km between the two cities are: ");
+                System.out.println("The distance between these two cities in kilometers is : " + 
+                                    City.distance(temp1.getCity(), temp2.getCity()) + " KM");
+                
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
                 break;
             case 7: // find nearby cities
                 System.out.println("Enter the name of the city: ");
-                String cityNear = KB.next();
+                String city = KB.next();
 
-                /*
-                 * BSTCityNode result = cities.binSearch(BSTCities.getRoot(), cityNear);
-                 * 
-                 * while(result == null){
-                 * System.out.println("City does not exist enter a valid city");
-                 * cityNear = KB.next();
-                 * 
-                 * result = cities.binSearch(BSTCities.getRoot(), cityNear);
-                 * }
-                 */
-
+                
+                result = cities.binSearch(cities.getRoot(), city);
+                // error checking
+                while(result == null){
+                System.out.println("City does not exist enter a valid city");
+                city = KB.next();
+                
+                result = cities.binSearch(cities.getRoot(), city);
+                }
+                 
+                // accepts user input
                 System.out.println("Enter kilometer radius to search");
-                double searchRad = KB.nextDouble();
-
-                // System.out.println(cities.searchRad(cities, cityNear, searchRad));
+                double radius = KB.nextDouble();
+                // formatting
+                System.out.printf("\nCities near a %f km radius are\n" + 
+                        "==========================\n\n", radius);
+                // makes function call to print cities
+                cities.searchRad(cities.getRoot(), result.getCity(), radius);
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -209,9 +218,8 @@ public class Main {
     }
 
     public static void menuFor1() {
-        System.out.printf("\n9. Display cities in the alphabetical order of names\n" +
-                "10. Display cities in the ascending order of their population\n" +
-                "11. Exit to top menu\n");
+        System.out.printf("=====================================\n9. Display cities in the alphabetical order of names\n"
+            + "10. Display cities in the ascending order of their population\n11. Exit to top menu\n");
     }
 
     public static void choiceFor1(int choice, BSTCities cities) {

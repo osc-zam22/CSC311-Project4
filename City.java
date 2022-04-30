@@ -1,6 +1,29 @@
 import java.lang.Exception;
+
 public class City implements Comparable<City> 
 {
+    // static funcitons, provided in pdf, modified for city objects
+    public static double distance(City c1 , City c2)
+    {
+        double R = 6371; // Radius of the earth in km
+        double dLat = deg2rad(c2.getLatitude() - c1.getLatitude()); // deg2rad below
+        double dLon = deg2rad(c2.getLongtitude() - c1.getLongtitude());
+
+        double a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(c1.getLatitude())) * Math.cos(deg2rad(c2.getLatitude())) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double distance = R * c; // Distance in km
+        return distance;
+    }
+
+    private static double deg2rad(double deg) {
+        return deg * (Math.PI/180);
+       }
+       
+
     // private field that holds info
     private String name;
     private double longitude, latitude;
@@ -77,7 +100,7 @@ public class City implements Comparable<City>
     @Override
     // displays the information of a City object
     public String toString(){
-        String out = String.format("City: %s Location Latitude: %f Longitude: %f Population: %d", 
+        String out = String.format("City: %s\nLocation: Latitude: %f Longitude: %f\nPopulation: %d\n\n", 
             this.name , this.latitude , this.longitude , this.population);
         return out;
     }

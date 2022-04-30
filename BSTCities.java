@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -47,7 +48,10 @@ public class BSTCities {
     // binary Search
     public BSTCityNode binSearch(BSTCityNode node, String cityName) {
         // base case
-        if(node.getCity().getName().compareToIgnoreCase(cityName) == 0)
+        if(node == null){
+            return null;
+        }
+        else if(node.getCity().getName().compareToIgnoreCase(cityName) == 0)
         {
             return node; 
         }
@@ -63,6 +67,29 @@ public class BSTCities {
         // base case
         else return null;
     }
+
+        // binary Search, overloaded to account for objects and for Strings
+        public BSTCityNode binSearch(BSTCityNode node, City city) {
+            // base case
+            if(node == null){
+                return null;
+            }
+            else if(node.getCity().getName().compareToIgnoreCase(city.getName()) == 0)
+            {
+                return node; 
+            }
+            // recursive calls
+            else if(node.getCity().getName().compareToIgnoreCase(city.getName()) > 0)
+            {
+                return binSearch(node.getLeft(), city);
+            }
+            else if(node.getCity().getName().compareToIgnoreCase(city.getName()) < 0)
+            {
+                return binSearch(node.getRight(), city);
+            }
+            // base case
+            else return null;
+        }
 
     // recursive method to find and return the max node in the tree
     public BSTCityNode getMax(BSTCityNode node) {
@@ -176,4 +203,21 @@ public class BSTCities {
          rt.setLeft(deleteMin(rt.getLeft()));
          return rt;
      }
+
+
+     // prints all cities in radius of a city that was passed
+     public void searchRad(BSTCityNode node , City temp , double radius)
+     {
+        if(node == null){
+            return;
+        }
+        // inOrder traversal to process nodes
+        searchRad(node.getLeft(), temp, radius);
+        if(!node.getCity().equals(temp) && City.distance(temp, node.getCity()) <= radius ){
+            System.out.println(node.toString());
+        }
+        searchRad(node.getRight(), temp, radius);
+     }
+
+
 }
