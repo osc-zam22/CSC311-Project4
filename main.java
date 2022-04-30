@@ -218,7 +218,7 @@ public class Main {
     }
 
     public static void menuFor1() {
-        System.out.printf("=====================================\n9. Display cities in the alphabetical order of names\n"
+        System.out.println("=====================================\n9. Display cities in the alphabetical order of names\n"
             + "10. Display cities in the ascending order of their population\n11. Exit to top menu\n");
     }
 
@@ -226,21 +226,25 @@ public class Main {
         switch (choice) {
             case 9: // print by a-z
                 // toString is in Order traversal by default
+                System.out.println("\n\nprinting in alphabetcal order\n=====================================");
                 System.out.println(cities.toString());
+            System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
                 break;
 
             case 10: // print by pop
-                System.out.println("Printed in order of population");
+            System.out.println("\n\nprinting in Population order\n=====================================");
                 cities.sortedByPop(cities.getRoot());
+                System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
                 break;
 
             case 11:
+            System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -268,9 +272,10 @@ public class Main {
                  if (result == null) {
                  System.out.println("City does not exist in  the records");
                  } else {
-                 System.out.println(result);
+                    System.out.println("=====================================");
+                    System.out.println("City Found: " +result);
                  }
-                 
+                 System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
@@ -281,13 +286,17 @@ public class Main {
                 int popMin = KB.nextInt();
                 System.out.println("Enter maximum range of population to search for: ");
                 int popMax = KB.nextInt();
+                System.out.println("=====================================\n"+   
+                    "Cities found in that Range"+ "=====================================");
                 cities.betweenThreshold(cities.getRoot() , popMin , popMax);
+                System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
                 break;
 
             case 14: // return to main
+            System.out.println("=====================================");
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
