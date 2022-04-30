@@ -199,6 +199,7 @@ public class Main {
                 menuChoice(choice, cities);
                 break;
             case 8: // exit
+                System.out.println("Exiting program");
                 System.exit(0);
                 break;
             default:

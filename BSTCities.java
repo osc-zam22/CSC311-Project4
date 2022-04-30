@@ -136,4 +136,53 @@ public class BSTCities {
             betweenThreshold(root.getRight() , lowerBound, upperBound);
         } 
     }
+
+
+    // remove function, design choice, removes the min
+    // borrowed from provided code
+    public BSTCityNode remove(BSTCityNode root , String name) 
+    {
+        BSTCityNode temp = this.binSearch(root, name);   // First find it
+        if (temp != null) 
+        {
+            root = removehelp(root, name); // Now remove it
+            nodeCount--;
+        }
+    return temp;
+    }
+
+
+    // remove helper function, design choice: removes the min
+    // borrowed from provided code, uses binary search to find the min
+    private BSTCityNode removehelp(BSTCityNode rt, String query) 
+    {
+        if (rt == null) 
+            return null;
+        if (rt.getCity().getName().compareTo(query) > 0)
+            rt.setLeft(removehelp(rt.getLeft(), query));
+        else if (rt.getCity().getName().compareTo(query) < 0)
+            rt.setRight(removehelp(rt.getRight(), query));
+        else 
+        { // Found it
+            if (rt.getLeft() == null) 
+                return rt.getRight();
+            else if (rt.getRight() == null) 
+                return rt.getLeft();
+            else 
+            { // Two children
+                BSTCityNode temp = getMin(rt.getRight());
+                rt.setCity(temp.getCity());
+                rt.setRight(deleteMin(rt.getRight()));
+            }
+        }
+    return rt;
+    }
+     // deletes the min
+     private BSTCityNode deleteMin(BSTCityNode rt) 
+     {
+         if (rt.getLeft() == null) 
+             return rt.getRight();
+         rt.setLeft(deleteMin(rt.getLeft()));
+         return rt;
+     }
 }
