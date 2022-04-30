@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -195,29 +197,87 @@ public class BSTCities {
         }
     return rt;
     }
-     // deletes the min node
-     private BSTCityNode deleteMin(BSTCityNode rt) 
-     {
-         if (rt.getLeft() == null) 
-             return rt.getRight();
-         rt.setLeft(deleteMin(rt.getLeft()));
-         return rt;
-     }
+    // deletes the min node
+    private BSTCityNode deleteMin(BSTCityNode rt) 
+    {
+        if (rt.getLeft() == null) 
+            return rt.getRight();
+        rt.setLeft(deleteMin(rt.getLeft()));
+        return rt;
+    }
 
 
-     // prints all cities in radius of a city that was passed
-     public void searchRad(BSTCityNode node , City temp , double radius)
-     {
+    // prints all cities in radius of a city that was passed
+    public void searchRad(BSTCityNode node , City temp , double radius)
+    {
+    if(node == null){
+        return;
+    }
+    // inOrder traversal to process nodes
+    searchRad(node.getLeft(), temp, radius);
+    if(!node.getCity().equals(temp) && City.distance(temp, node.getCity()) <= radius ){
+        System.out.println(node.toString());
+    }
+    searchRad(node.getRight(), temp, radius);
+    }
+
+
+    public void sortedByPop(BSTCityNode node)
+    {
+        // initiates a list of Cities
+        List<City> cityList = new ArrayList<City>();
+        // inserts all Cities into the list
+        sortedPopHelper(node, cityList);
+        // sorts the lists
+        quickSort(cityList, 0, cityList.size()-1);
+
+        //iterator to iterate through the list
+        Iterator<City> iter = cityList.iterator();
+        // prints the list of Cities in order
+        while(iter.hasNext())
+        {
+            System.out.println(iter.next().toString());
+        }
+
+    }
+
+    // helper function, insertes all cities into the list
+    private void sortedPopHelper(BSTCityNode node , List<City> list)
+    {
         if(node == null){
             return;
         }
-        // inOrder traversal to process nodes
-        searchRad(node.getLeft(), temp, radius);
-        if(!node.getCity().equals(temp) && City.distance(temp, node.getCity()) <= radius ){
-            System.out.println(node.toString());
+        list.add(node.getCity());
+        sortedPopHelper(node.getLeft(), list);
+        sortedPopHelper(node.getRight(), list);
+    }
+
+    // quick Sort algorithm, used to sort population
+    private void quickSort(List<City> list , int low , int high)
+    {
+        if(low < high) 
+        {
+            int pivot = split(list , low , high);
+            quickSort(list, low, pivot -1);
+            quickSort(list, pivot +1, high);
         }
-        searchRad(node.getRight(), temp, radius);
-     }
+    }
 
-
+    // helper function for quicksort, returns the index on where to split the array
+    private int split(List<City> list , int low , int high)
+    {
+        int pivot = list.get(high).getPop();
+        int i = low-1;
+        for(int j = low ; j <= high -1 ; j++)
+        {
+            if(list.get(j).getPop() < pivot )
+            {
+                i++;
+                Collections.swap(list, i, j);
+            }
+            
+        }
+        Collections.swap(list, i+1, high);
+        return i+1;
+    }
 }

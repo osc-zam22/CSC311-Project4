@@ -233,7 +233,8 @@ public class Main {
                 break;
 
             case 10: // print by pop
-
+                System.out.println("Printed in order of population");
+                cities.sortedByPop(cities.getRoot());
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);
