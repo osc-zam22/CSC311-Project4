@@ -97,19 +97,20 @@ public class Main {
                 menuChoice(choice, cities);
                 break;
             case 4: // delete city
+                // prompts user
                 System.out.println("Enter the name of a city to delete.");
                 String killCity = KB.next();
                  
                 // checks if the city exists
-                result = cities.binSearch(cities.getRoot(), killCity);
+                result = cities.remove(cities.getRoot(), killCity);
                  
                 // error handling
                 if (result == null) {
-                System.out.println("City does not exist in  the records");
-                } else {
-                //cities.remove(killCity);
+                System.out.println("City did not exist in  the records");
                 }
-                 
+                else{
+                    System.out.println("City successfully removed, the new database is:\n" + cities.toString());
+                }
                 menu();
                 choice = KB.nextInt();
                 menuChoice(choice, cities);

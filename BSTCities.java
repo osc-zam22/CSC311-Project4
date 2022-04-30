@@ -43,10 +43,6 @@ public class BSTCities {
             root.setRight(insertHelp(root.getRight(), city));
         return root;
     }
-    public void remove(BSTCityNode node) {
-        // TODO Auto-generated method stub
-        
-    }
 
     // binary Search
     public BSTCityNode binSearch(BSTCityNode node, String cityName) {
@@ -84,11 +80,6 @@ public class BSTCities {
         return node;
     }
 
-    public List<BSTCityNode> postOrder() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
 
     // helper print function, in Order traversal
     private void printhelp(BSTCityNode rt) 
@@ -177,7 +168,7 @@ public class BSTCities {
         }
     return rt;
     }
-     // deletes the min
+     // deletes the min node
      private BSTCityNode deleteMin(BSTCityNode rt) 
      {
          if (rt.getLeft() == null) 
